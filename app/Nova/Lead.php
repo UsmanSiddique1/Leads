@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\BelongsTo;
 
 
 class Lead extends Resource
@@ -63,22 +64,11 @@ class Lead extends Resource
                 
             Text::make('Agency Name')
                 ->sortable()
-                ->rules('required', 'max:255'),
-                
-            BooleanGroup::make('Permissions')->options([
-                    'create' => 'Create',
-                    'read' => 'Read',
-                    'update' => 'Update',
-                    'delete' => 'Delete',
-                ]),
+                ->rules('required', 'max:255'),           
+           
 
-            Select::make('Size')->options([
-                    'S' => 'Small',
-                    'M' => 'Medium',
-                    'L' => 'Large',
-                ]),
-
-            HasMany::make('Contact')
+            HasMany::make('Appointment'),
+            BelongsTo::make('City')
         ];
     }
 

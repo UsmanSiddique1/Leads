@@ -5,20 +5,17 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Text;
 
-
-class Appointment extends Resource
+class City extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Appointment::class;
+    public static $model = \App\Models\City::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -46,23 +43,10 @@ class Appointment extends Resource
     {
         return [
             ID::make()->sortable(),
-
-            Text::make('Meeting With')
+            Text::make('Name')
                 ->sortable()
-                ->rules('required', 'max:255'),                  
-
-            Text::make('Place')
-                ->sortable(),
-            
-            DateTime::make('Time')->hideFromIndex(),
-
-           
-
-            BelongsTo::make('Lead')
-            
-            
-                
-           
+                ->rules('required', 'max:255'),
+            HasMany::make('Lead'),
         ];
     }
 

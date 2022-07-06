@@ -13,4 +13,7 @@ class Lead extends Model
     public function appointment(){
         return $this->hasMany(Appointment::class);
     }
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
 }

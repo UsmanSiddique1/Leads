@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     use HasFactory;
-    protected $fillable = ['time','place','date','meeting_with'];
+    protected $fillable = ['time','place','meeting_with'];
 
     public function lead(){
         return $this->belongsTo(Lead::class);
